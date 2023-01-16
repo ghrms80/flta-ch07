@@ -51,6 +51,26 @@ class AppRouter {
         ),
       );
     },
-    // TODO: ADD Redirect Handler
+    redirect: (state) {
+      // 1
+      final loggedIn = appStateManager.isLoggedIn;
+      // 2
+      final loggingIn = state.subloc == '/login';
+      // 3
+      if (!loggedIn) return loggingIn ? null : '/login';
+
+      // 4
+      final isOnboardingComplete = appStateManager.isOnboardingComplete;
+      // 5
+      final onboarding = state.subloc == '/onboarding';
+      // 6
+      if (!isOnboardingComplete) {
+        return onboarding ? null : '/onboarding';
+      }
+      // 7
+      if (loggingIn || onboarding) return '/${FooderlichTab.explore}';
+      // 8
+      return null;
+    },
   );
 }

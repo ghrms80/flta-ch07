@@ -1,4 +1,5 @@
 import 'package:ch07_routes_and_navigation/models/models.dart';
+import 'package:ch07_routes_and_navigation/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,7 +27,11 @@ class AppRouter {
     initialLocation: '/login',
     // 8
     routes: [
-      // TODO: ADD Login Route
+      GoRoute(
+        name: 'login',
+        path: '/login',
+        builder: (context, state) => const LoginScreen(),
+      ),
       // TODO: ADD Onboarding Route
       // TODO: ADD Home Route
     ],

@@ -37,7 +37,25 @@ class AppRouter {
         path: '/onboarding',
         builder: (context, state) => const OnboardingScreen(),
       ),
-      // TODO: ADD Home Route
+      GoRoute(
+        name: 'home',
+        // 1
+        path: '/:tab',
+        builder: (context, state) {
+          // 2
+          final tab = int.tryParse(state.params['tab'] ?? '') ?? 0;
+          // 3
+          return Home(
+            key: state.pageKey,
+            currentTab: tab,
+          );
+        },
+        // 4
+        routes: const [
+          // TODO: Add Item Subroute
+          // TODO: Add Profile Subroute
+        ],
+      ),
     ],
     errorPageBuilder: (context, state) {
       return MaterialPage(
